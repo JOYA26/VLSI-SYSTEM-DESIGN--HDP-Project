@@ -151,16 +151,22 @@ $ gvim tb_good_mux.v -o good_mux.v
    The following commands are used for synthesis
 
 yosys> read_liberty -lib <path to lib file>
+
 yosys> read_verilog <path to verilog file>
+
 yosys> synth -top <top_module_name>
+
 yosys> abc -liberty <path to lib file>
+
 yosys> show
 
 Writing the verilog files and geneate netlist
 
 
 yosys> write_verilog <top_module_name>_netlist.v
+
 yosys> write_verilog -noattr <top_module_name>_netlist.v
+
 yosys> !gvim <top_module_name>_netlist.v 
 
 Synthesis of 2X1 Mux
@@ -190,10 +196,15 @@ Synthesize of the multiple_modules.v in different synthesis methods(Hierarachial
 
 **Synthesis of flatten**
 yosys> read_liberty -lib ../lib/sky130_fd_sc_hd_tt_025C_1c80.lib
+
 yosys> read_verilog multiple_modules.v
+
 yosys> synth -top multiple_modules
+
 yosys> abc -liberty ../lib/sky130_fd_sc_hd_tt_025C_1c80.lib 
+
 yosys> flatten
+
 yosys>show
 
 ![Screenshot from 2023-10-25 16-35-18](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/7b30fb8a-b9a4-457e-a0b4-9c04319b0076)
@@ -208,8 +219,11 @@ yosys> !gvim multiple_modules_flat.v
 **Synthesis of sub_module1
 
 yosys> read_liberty -lib ../lib/sky130_fd_sc_hd_tt_025C_1c80.lib
+
 yosys> read_verilog multiple_modules.v
+
 yosys> synth -top sub_modulel
+
 yosys> show
 
 ![Screenshot from 2023-10-25 16-58-00](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/ce311f71-f59a-49f8-9542-039968ff3dd7)
@@ -237,6 +251,52 @@ dff_asynchronous_reset Synthesis
 mult_8.v synthesis 
 
 ![mult8 synth](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/4cfb1685-319f-4199-af03-faa52999b533)
+
+**DAY3**
+
+Combinational and Sequential Optimisation
+
+Optimisation of a 2X1MUX Into AND Logic|opt_check.v
+
+yosys> read_liberty -lib ../lib/sky130_fd_sc_hd_tt_025C_1c80.lib
+
+yosys> read_verilog opt_check.v
+
+yosys> synth -top opt_check
+
+yosys>opt_clean -purge
+
+yosys>abc -liberty ../lib/sky130_fd_sc_hd_tt_025C_1c80.lib
+
+yosys> show
+
+![opt check synth](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/e72d2614-50b9-4c46-a170-133e2eb5d423)
+
+Optimisation of opt_check2.v
+
+Here I get a 2 input OR gate after optimisation
+
+![opt check2 synth](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/055d3c76-a044-40e3-83de-e40fbbe5b1c9)
+
+Optimisation of opt_check3.v
+
+Here I get a 3 input AND gate after optimisation
+
+![opt check3 synth](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/9941bc89-c454-4dc4-beb9-d39004948d78)
+
+Optimisation of opt_check3.v
+
+Here I get a XNOR gate after optimisation
+
+![opt check 4 synth](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/6374d143-e8e9-4de7-98db-66393d690918)
+
+Optimisation of multiple_modules_opt.v
+
+![multiple modules synth](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/29b1275f-6e1d-47d0-9bc5-1ea16b989733)
+
+
+
+
 
 
 
