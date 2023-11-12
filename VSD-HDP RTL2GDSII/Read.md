@@ -294,6 +294,98 @@ Optimisation of multiple_modules_opt.v
 
 ![multiple modules synth](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/29b1275f-6e1d-47d0-9bc5-1ea16b989733)
 
+**DAY 4**
+GLS- GATE LEVEL SIMULATION
+
+The netlist,the verilog models of the standard cell libraries and the testbench are used to run the GLS in iverlog.iverilog dumps out the vcd. The vcd files gives the waveform in gtkwave.
+
+GLS of 2x1 MUX
+$ gvim ternary_operator_mux.v -o bad_mux.v -o good_mux.v
+
+![ternary operator mux netlist](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/ea9bd491-923a-45ad-8eae-91cd622d58dd)
+
+RTL Synthesis of the ternary_operator_mux.v
+
+$ iverilog ternary_operator_mux.v tb_ternary_operator_mux.v
+
+$ ./a.out
+
+$ gtkwave tb_ternary_operator_mux.vcd
+
+![RTL Simulation of ternary operator mux](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/aff21795-80af-416f-aa78-fbced972750b)
+
+**Synthesis of ternary_operator_mux.v
+
+yosys> read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+yosys> read_verilog ternary_operator_mux.v
+
+yosys> abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+
+yosys> write_verilog -noattr ternary_operator_mux_net.v
+
+yosys> show
+
+![synth ternary operator mux](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/81e18d94-57c8-4435-bbf5-f698c1bf5459)
+
+**RUN GLS OF TERNARY_OPERATOR_MUX
+
+$ iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v ternary_operator_mux_net.v tb_ternary_operator_mux.v
+
+$ ./a.out
+
+$ iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v ternary_operator_mux_net.v tb_ternary_operator_mux.v
+
+![GLS TERNARY OPERATOR MUX](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/4a12cecf-5af8-4416-a591-04f5c1dd8f91)
+
+Pre-Synthesis
+
+Synthesis mismatch for blocking statement
+
+$ iverilog blocking_caveat.v tb_blocking_caveat.v 
+
+$ ./a.out
+
+$ gtkwave tb_blocking_caveat.vcd
+
+![Screenshot from 2023-11-11 19-42-08](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/b3037edf-b6a2-4cb9-98dd-18abd57a5ec2)
+
+Synthesis of blocking_caveat.v
+
+yosys> read_verilog blocking_caveat.v
+
+yosys> synth -top blocking_caveat 
+
+yosys> abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+yosys> write_verilog -noattr blocking_caveat_net.v
+
+![RTL Synth of blocking caveat](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/d9c3dece-19eb-440e-9aea-4229ac6dcaeb)
+
+![RTL synth blocking_caveat](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/a08f7f4e-92e6-494c-b1f3-83409125842c)
+
+
+**GLS blocking_caveat.v**
+
+$ iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v blocking_caveat_net.v tb_blocking_caveat.v
+
+$ ./a.out
+
+$ gtkwave tb_blocking_caveat.vcd
+
+![GLS synth of blocking_caveat](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/24d42d1b-9efd-450c-a7e8-f70d10737e16)
+
+It is evident that there is a synthesis mismatch in the RTL synthesis and GLS synthesis of blocking statement by comparing their gtkwaveforms.
+
+
+
+
+
+
+
+
+
+
 
 
 
