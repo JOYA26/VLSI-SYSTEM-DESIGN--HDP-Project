@@ -378,6 +378,19 @@ $ gtkwave tb_blocking_caveat.vcd
 It is evident that there is a synthesis mismatch in the RTL synthesis and GLS synthesis of blocking statement by comparing their gtkwaveforms.
 
 
+**DAY5**
+
+PROJECT ICG
+
+RTL Presimulation
+
+git clone https://github.com/drvasanthi/iiitb_cg
+
+![Screenshot from 2023-11-17 19-44-55](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/80f31773-79b9-4a98-89dc-4828ca72f138)
+
+
+
+
 
 
 
