@@ -388,6 +388,11 @@ git clone https://github.com/drvasanthi/iiitb_cg
 
 ![Screenshot from 2023-11-17 19-44-55](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/80f31773-79b9-4a98-89dc-4828ca72f138)
 
+I used -y flag of iverilog to solve the issue of .v files, but still getting error. 
+
+![Screenshot from 2023-12-02 18-43-05](https://github.com/JOYA26/VLSI-SYSTEM-DESIGN--HDP-Project/assets/140269634/490f811f-a8a9-4b12-b697-09712e23f778)
+
+
 
 
 
